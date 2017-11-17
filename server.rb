@@ -11,7 +11,8 @@ socket = PusherClient::Socket.new("66c13dbdccd127e0e125", { encrypted: true })
 socket.subscribe('light')
 
 connection :arduino, adaptor: :firmata, port: serial_port
-device     :led,     driver: :led,      pin: 13
+device     :led,     driver:  :led,     pin: 8
+
 
 work do
   socket.bind('change-status') do |data|
@@ -21,7 +22,7 @@ work do
       led.off
     end
   end
-  
+
   socket.connect
 end
 
