@@ -11,15 +11,14 @@ socket = PusherClient::Socket.new("66c13dbdccd127e0e125", { encrypted: true })
 socket.subscribe('light')
 
 connection :arduino, adaptor: :firmata, port: serial_port
-device     :led,     driver:  :led,     pin: 8
-
+device     :light,   driver:  :led,     pin: 8
 
 work do
   socket.bind('change-status') do |data|
     if data == "on"
-      led.on
+      light.on
     else
-      led.off
+      light.off
     end
   end
 
